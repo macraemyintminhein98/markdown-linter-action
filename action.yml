@@ -1,0 +1,29 @@
+name: 'Markdown Snippet Linter'
+description: 'Automatically formats code snippets inside Markdown files using configurable linters.'
+author: 'APEX Labs'
+inputs:
+  formatters:
+    description: 'JSON string mapping language identifiers to formatter commands (e.g., {"javascript": "prettier", "python": "black --skip-string-normalization"}).'
+    required: true
+  commit_changes:
+    description: 'Whether to commit the formatted changes back to the repository.'
+    required: false
+    default: 'true'
+  commit_message:
+    description: 'The commit message to use if changes are committed.'
+    required: false
+    default: '[CI] Format Markdown code snippets'
+  files_to_include:
+    description: 'Newline-separated list of glob patterns for files to include (e.g., `**/*.md`).'
+    required: false
+    default: '**/*.md'
+  files_to_exclude:
+    description: 'Newline-separated list of glob patterns for files to exclude.'
+    required: false
+    default: ''
+runs:
+  using: 'node16'
+  main: 'dist/index.js'
+branding:
+  icon: 'markdown'
+  color: 'blue'
